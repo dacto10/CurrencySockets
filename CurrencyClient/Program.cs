@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -11,36 +12,70 @@ namespace CurrencyClient
     {
         static void Main(string[] args)
         {
-            string xml = "<ConvertRequest><from>eur</from><to>usd</to><units>10</units></ConvertRequest>";
-            Connect("127.0.0.1", xml);
+            while(true)
+            {
+                string option, units, origen, destino = "";
+                Boolean end = false;
+
+                while (true)
+                {
+                    Console.WriteLine("Seleccione la moneda de origen");
+                    Console.WriteLine("1. EUR");
+                    Console.WriteLine("2. USD");
+                    Console.WriteLine("3. SALIR");
+                    option = Console.ReadLine();
+                    origen = option == "1" ? "eur" : option == "2" ? "usd" : "";
+                    if (option == "3")
+                    {
+                        end = true;
+                        break;
+                    }
+                    else if (option == "1" || option == "2") {
+                        Console.WriteLine("Seleccione la moneda de destino");
+                        Console.WriteLine("1. EUR");
+                        Console.WriteLine("2. USD");
+                        Console.WriteLine("3. SALIR");
+                        option = Console.ReadLine();
+                        destino = option == "1" ? "eur" : option == "2" ? "usd" : "";
+                        if (option == "3") end = true;
+                        break;
+                    }
+                    else Console.WriteLine("Introduzca una opción válida!");
+                }
+
+                if (end) break;
+
+                while (true)
+                {
+                    Console.WriteLine("Introduzca el valor a convertir");
+                    units = Console.ReadLine();
+                    try
+                    {
+                        Decimal.Parse(units);
+                        break;
+                    } catch(FormatException err)
+                    {
+                        Console.WriteLine("Introduzca un valor válido!");
+                    }
+                }
+
+                Connect(XmlConverter.GenerarPaqueteXmlConvertRequest(origen, destino, units));
+            }
+            
         }
-        static void Connect(String server, String message)
+        static void Connect(String message)
         {
             try
             {
-                // Create a TcpClient.
-                // Note, for this client to work you need to have a TcpServer
-                // connected to the same address as specified by the server, port
-                // combination.
-                Int32 port = 13000;
-                TcpClient client = new TcpClient(server, port);
-                // Translate the passed message into ASCII and store it as a Byte array.
+                TcpClient client = new TcpClient(ConfigurationManager.AppSettings["host"], Int32.Parse(ConfigurationManager.AppSettings["port"]));
                 Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
-                // Get a client stream for reading and writing
                 NetworkStream stream = client.GetStream();
-                // Send the message to the connected TcpServer.
                 stream.Write(data, 0, data.Length);
-                Console.WriteLine("Sent: {0}", message);
-                // Receive the TcpServer.response.
-                // Buffer to store the response bytes.
                 data = new Byte[256];
-                // String to store the response ASCII representation.
                 String responseData = String.Empty;
-                // Read the first batch of the TcpServer response bytes.
                 Int32 bytes = stream.Read(data, 0, data.Length);
                 responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                Console.WriteLine("Received: {0}", responseData);
-                // Close everything.
+                Console.WriteLine($"{XmlConverter.ProcesarXmlConvertResponse(responseData)}");
                 stream.Close();
                 client.Close();
             }
@@ -52,8 +87,6 @@ namespace CurrencyClient
             {
                 Console.WriteLine("SocketException: {0}", e);
             }
-            Console.WriteLine("\n Press Enter to continue...");
-            Console.Read();
         }
     }
 }
