@@ -30,15 +30,21 @@ namespace CurrencyClientForm
             this.FinalCurren = FinalCurrency.Text;
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void valueInput_TextChanged(object sender, EventArgs e)
         {
-            if (this.OriginCurren != "" && this.FinalCurren != "")
+            try
             {
-                ResultLabel.Text = RequestHandler.HandleRequest(XmlConverter.GenerarPaqueteXmlConvertRequest(this.OriginCurren, this.FinalCurren, $"{OriginValue.Value}"));
-            }
-            else
+                if (this.OriginCurren != "" && this.FinalCurren != "")
+                {
+                    ResultLabel.Text = RequestHandler.HandleRequest(XmlConverter.GenerarPaqueteXmlConvertRequest(this.OriginCurren, this.FinalCurren, $"{Decimal.Parse(valueInput.Text)}"));
+                }
+                else
+                {
+                    ResultLabel.Text = "0";
+                }
+            } catch (FormatException ex)
             {
-                ResultLabel.Text = "0";
+
             }
         }
     }

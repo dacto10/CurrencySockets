@@ -16,7 +16,7 @@ namespace CurrencyClient
             var message = doc.SelectSingleNode("//ConvertResponse");
             var nodeUnits = doc.SelectSingleNode("//units");
             var toUnits = doc.SelectSingleNode("//to");
-            return nodeUnits != null ? $"{nodeUnits.InnerText} {toUnits.InnerText.ToUpper().Trim()}" : message.InnerText;
+            return nodeUnits != null ? $"{toUnits.InnerText.ToUpper().Trim()}" : message.InnerText;
         }
         public static string GenerarPaqueteXmlConvertRequest(string fromCurrency, string finalCurrency, string units)
         {
