@@ -5,11 +5,13 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using CurrencyClient.CurrencyService;
 
 namespace CurrencyClient
 {
     public class RequestHandler
     {
+        /**
         public static string HandleRequest(string message)
         {
             try
@@ -37,5 +39,6 @@ namespace CurrencyClient
                 return "";
             }
         }
+        **/
     }
 }

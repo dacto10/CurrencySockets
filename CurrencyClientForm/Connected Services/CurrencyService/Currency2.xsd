@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CurrencySOAP" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CurrencySOAP" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CurrencyRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="destinationCurrency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="originCurrency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="originValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CurrencyRequest" nillable="true" type="tns:CurrencyRequest" />
+  <xs:complexType name="CurrencyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="destinationCurrency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="destinationValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CurrencyResponse" nillable="true" type="tns:CurrencyResponse" />
+</xs:schema>

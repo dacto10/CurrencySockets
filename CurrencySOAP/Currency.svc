@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="CurrencySOAP.Currency" CodeBehind="Currency.svc.cs" %>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CurrencyClientForm.CurrencyService;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,15 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CurrencyClient;
 
 namespace CurrencyClientForm
 {
-    public partial class CurrencyClientForm : Form
+    public partial class Form : System.Windows.Forms.Form
     {
         private string OriginCurren = "";
         private string FinalCurren = "";
-        public CurrencyClientForm()
+        public Form()
         {
             InitializeComponent();
         }
@@ -30,19 +30,31 @@ namespace CurrencyClientForm
             this.FinalCurren = FinalCurrency.Text;
         }
 
-        private void valueInput_TextChanged(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             try
             {
                 if (this.OriginCurren != "" && this.FinalCurren != "")
                 {
-                    ResultLabel.Text = RequestHandler.HandleRequest(XmlConverter.GenerarPaqueteXmlConvertRequest(this.OriginCurren, this.FinalCurren, $"{Decimal.Parse(valueInput.Text)}"));
+                    CurrencyRequest request = new CurrencyRequest()
+                    {
+                        originCurrency = this.OriginCurren,
+                        originValue = this.valueInput.Text,
+                        destinationCurrency = this.FinalCurren
+                    };
+
+                    CurrencyService.CurrencyClient client = new CurrencyService.CurrencyClient();
+
+                    CurrencyResponse response = client.ConvertCurrency(request);
+
+                    ResultLabel.Text = $"{response.destinationValue} {response.destinationCurrency}";
                 }
                 else
                 {
                     ResultLabel.Text = "0";
                 }
-            } catch (FormatException ex)
+            }
+            catch (FormatException ex)
             {
 
             }

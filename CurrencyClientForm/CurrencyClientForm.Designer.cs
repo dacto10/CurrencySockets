@@ -1,7 +1,7 @@
 ﻿
 namespace CurrencyClientForm
 {
-    partial class CurrencyClientForm
+    partial class Form
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -37,6 +37,7 @@ namespace CurrencyClientForm
             this.valueInput = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // OriginCurrency
@@ -47,10 +48,9 @@ namespace CurrencyClientForm
             this.OriginCurrency.Items.AddRange(new object[] {
             "USD",
             "EUR"});
-            this.OriginCurrency.Location = new System.Drawing.Point(44, 107);
-            this.OriginCurrency.Margin = new System.Windows.Forms.Padding(4);
+            this.OriginCurrency.Location = new System.Drawing.Point(33, 87);
             this.OriginCurrency.Name = "OriginCurrency";
-            this.OriginCurrency.Size = new System.Drawing.Size(305, 24);
+            this.OriginCurrency.Size = new System.Drawing.Size(230, 21);
             this.OriginCurrency.TabIndex = 0;
             this.OriginCurrency.SelectedIndexChanged += new System.EventHandler(this.OriginCurrency_SelectedIndexChanged);
             // 
@@ -63,77 +63,82 @@ namespace CurrencyClientForm
             this.FinalCurrency.Items.AddRange(new object[] {
             "USD",
             "EUR"});
-            this.FinalCurrency.Location = new System.Drawing.Point(44, 188);
-            this.FinalCurrency.Margin = new System.Windows.Forms.Padding(4);
+            this.FinalCurrency.Location = new System.Drawing.Point(33, 153);
             this.FinalCurrency.Name = "FinalCurrency";
-            this.FinalCurrency.Size = new System.Drawing.Size(305, 24);
+            this.FinalCurrency.Size = new System.Drawing.Size(230, 21);
             this.FinalCurrency.TabIndex = 1;
             this.FinalCurrency.SelectedIndexChanged += new System.EventHandler(this.FinalCurrency_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 74);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(30, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 16);
+            this.label1.Size = new System.Drawing.Size(80, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Moneda Origen";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 153);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(30, 124);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 16);
+            this.label2.Size = new System.Drawing.Size(85, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Moneda Destino";
             // 
             // ResultLabel
             // 
             this.ResultLabel.AutoSize = true;
-            this.ResultLabel.Location = new System.Drawing.Point(41, 354);
-            this.ResultLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ResultLabel.Location = new System.Drawing.Point(31, 288);
             this.ResultLabel.Name = "ResultLabel";
-            this.ResultLabel.Size = new System.Drawing.Size(15, 16);
+            this.ResultLabel.Size = new System.Drawing.Size(13, 13);
             this.ResultLabel.TabIndex = 5;
             this.ResultLabel.Text = "0";
             // 
             // valueInput
             // 
-            this.valueInput.Location = new System.Drawing.Point(43, 270);
+            this.valueInput.Location = new System.Drawing.Point(32, 219);
+            this.valueInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.valueInput.Name = "valueInput";
-            this.valueInput.Size = new System.Drawing.Size(168, 22);
+            this.valueInput.Size = new System.Drawing.Size(127, 20);
             this.valueInput.TabIndex = 6;
-            this.valueInput.TextChanged += new System.EventHandler(this.valueInput_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 238);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(31, 193);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 16);
+            this.label3.Size = new System.Drawing.Size(84, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "Valor a convertir";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(40, 322);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(30, 262);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 16);
+            this.label4.Size = new System.Drawing.Size(55, 13);
             this.label4.TabIndex = 8;
             this.label4.Text = "Resultado";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(189, 218);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(74, 21);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "CALCULAR";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // CurrencyClientForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(393, 554);
+            this.ClientSize = new System.Drawing.Size(295, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.valueInput);
@@ -142,7 +147,6 @@ namespace CurrencyClientForm
             this.Controls.Add(this.label1);
             this.Controls.Add(this.FinalCurrency);
             this.Controls.Add(this.OriginCurrency);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CurrencyClientForm";
             this.Text = "Currency Converter";
             this.ResumeLayout(false);
@@ -160,6 +164,7 @@ namespace CurrencyClientForm
         private System.Windows.Forms.TextBox valueInput;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
     }
 }
 

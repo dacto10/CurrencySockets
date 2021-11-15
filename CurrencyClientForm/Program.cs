@@ -16,7 +16,7 @@ namespace CurrencyClientForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CurrencyClientForm());
+            Application.Run(new Form());
         }
     }
 }
